@@ -1,4 +1,5 @@
 from flask import Flask
+import os  # برای دریافت پورت از محیط اجرا
 
 app = Flask(__name__)
 
@@ -7,4 +8,6 @@ def home():
     return "سلام مازوت! رباتت روی Render زنده شد!"
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=10000)
+    # دریافت پورت از محیط اجرا؛ اگر نبود، پیش‌فرض 10000
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host='0.0.0.0', port=port)
